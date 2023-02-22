@@ -1016,10 +1016,12 @@ ul{
   object-fit: cover;
   border-radius: 6px;
   border: 3px solid transparent;
+  opacity: 0.7;
   transition: var(--main-transition);
 }
 .app-t-sherit-panel .imgs img:hover {
   border-color: var(--blue-color);
+  opacity: 1;
 }
 /* End App t-sehrit Panel */ 
 /* Start Workspace */
@@ -1044,8 +1046,32 @@ ul{
 .workspace .heder_workspace .icons i:hover {
   color: var(--blue-color);
 }
+.workspace .canvas-container {
+  /* width: 946px;
+  height: 882px; */
+  position: relative;
+  user-select: none;
+}
+.workspace .canvas-container .lower-canva {
+  position: absolute;
+  width: 100%;
+  height: 882px;
+  left: 0px;
+  top: 0px;
+  touch-action: none;
+  user-select: none;
+}
 .workspace .canvas-container img {
   width: 100%; 
-  height: 800px;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: default;
+  object-fit: cover;
 }
 /* End Workspace */

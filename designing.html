@@ -89,16 +89,16 @@
                         <span class="txt-c d-block c-black fw-bold">Front And Back</span>
                     </div>
                     <div class="imgs">
-                        <img src="imgs/Tshirt-Maker_Models_Agus01_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Patricia01_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Pixelnacho01_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Sofia01_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Tshirt01_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Valentina01_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Agustina01_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Coke02_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Ali03_Thumb.png" alt="">
-                        <img src="imgs/Tshirt-Maker_Models_Matias02_Thumb.png" alt="">
+                        <img src="imgs/Tshirt-Maker_Models_Agus01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Patricia01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Pixelnacho01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Sofia01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Tshirt01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Valentina01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Agustina01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Coke02_Thumb.png" alt="" onclick="myFunction(this)"> 
+                        <img src="imgs/Tshirt-Maker_Models_Ali03_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Matias02_Thumb.png" alt="" onclick="myFunction(this)">
                     </div>
                 </div>
             </div>
@@ -113,7 +113,9 @@
                     </div>
                 </div>
                 <div class="canvas-container">
-                    <img src="imgs/Tshirt-Maker_Models_Tshirt01_Thumb.png" alt="">
+                    <div class="lower-canva">
+                        <img id="imageBox" src="imgs/Tshirt-Maker_Models_Tshirt01_Thumb.png" alt="">
+                    </div>
                 </div>
             </div>
             <!-- End Workspace -->
@@ -121,5 +123,11 @@
         <!-- End plan_and_workspace -->
     </div>
     </div>
+    <script>
+        function myFunction(smallImg) {
+            var fullImg = document.getElementById("imageBox");
+            fullImg.src = smallImg.src;
+        }
+    </script>
 </body>
 </html>
