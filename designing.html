@@ -34,43 +34,43 @@
         <div class="sidebar bg-white p-relative">
             <ul>
                 <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
+                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#" onclick="t_schert()">
                         <i class="fa-sharp fa-regular fa-shirt" ></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="settings.html">
-                        <i class="fa-solid fa-gear fa-fw"></i>
-                        <span>Settings</span>
+                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#" onclick="t_text()">
+                        <i style="font-size:24px" class="fa">&#xf035;</i>
+                        <span>Text</span>
                     </a>
                 </li>
                 <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="profile.html">
-                        <i class="fa-regular fa-user fa-fw"></i>
-                        <span>Profile</span>
+                    <a class="c-black d-flex align-content fs-15 rad-6 p-10" href="#" onclick="imag_upload()">
+                        <i class="fa-solid fa-images"></i>
+                        <span>Image</span>
                     </a>
                 </li>
                 <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="projects.html">
+                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
                         <i class="fa-solid fa-diagram-project fa-fw"></i>
                         <span>Projects</span>
                     </a>
                 </li>
                 <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="courses.html">
+                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
                         <i class="fa-solid fa-graduation-cap fa-fw"></i>
                         <span>Courses</span>
                     </a>
                 </li>
                 <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="friends.html">
+                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
                         <i class="fa-regular fa-circle-user fa-fw"></i>
                         <span>Friends</span>
                     </a>
                 </li>
                 <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="plans.html">
+                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
                         <i class="fa-regular fa-credit-card fa-fw"></i>
                         <span>Plans</span>
                     </a>
@@ -80,7 +80,7 @@
         <!-- Start plan_and_workspace -->
         <div class="plan_and_workspace">
             <!-- Start App t-sehrit Panel -->
-            <div class="app-t-sherit-panel">
+            <div id="m1" class="app-t-sherit-panel">
                 <div class="model">
                     <p>Model</p>
                 </div>
@@ -102,6 +102,37 @@
                     </div>
                 </div>
             </div>
+            <!-- Start Text -->
+            <div id="m2" class="app-t-sherit-panel" style="display: none;">
+                <div class="model">
+                    <p>Model</p>
+                </div>
+                <div class="f_a_b_img">
+                    <div class="fron_and_back">
+                        <span class="txt-c d-block c-black fw-bold">Front And Back</span>
+                    </div>
+                    <div class="imgs">
+                        <img src="imgs/Tshirt-Maker_Models_Agus01_Thumb.png" alt="" onclick="myFunction(this)">
+                        <img src="imgs/Tshirt-Maker_Models_Patricia01_Thumb.png" alt="" onclick="myFunction(this)">
+                    </div>
+                </div>
+            </div>
+            <!-- Start Text -->
+            <div id="m3" class="app-t-sherit-panel" style="display: none;">
+                <div class="model">
+                    <p>Model</p>
+                </div>
+                <div class="f_a_b_img">
+                    <div class="fron_and_back">
+                        <span class="txt-c d-block c-black fw-bold">Front And Back</span>
+                    </div>
+                    <div class="imgs">
+                        <img src="imgs/Tshirt-Maker_Models_Agus01_Thumb.png" alt="" onclick="myFunction(this)">
+                    </div>
+                </div>
+            </div>
+            <!-- Start Imag Upload -->
+            <!-- End Imag Upload -->
             <!-- End App t-sehrit Panel -->
             <!-- Start Workspace -->
             <div class="workspace">
@@ -123,11 +154,6 @@
         <!-- End plan_and_workspace -->
     </div>
     </div>
-    <script>
-        function myFunction(smallImg) {
-            var fullImg = document.getElementById("imageBox");
-            fullImg.src = smallImg.src;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
