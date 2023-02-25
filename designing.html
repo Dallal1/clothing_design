@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/normalize.css">
     <!-- css stayl -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/designing.css">
     <!-- css framework -->
     <link rel="stylesheet" href="css/framework.css">
     <!-- Font Awesome -->
@@ -18,142 +18,454 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="alles">
-        <!-- Start Head -->
-    <div class="head bg-white p-15 between-flex">
-        <div class="logo"><h3 class="mt-0 mb-0"><a class="mt-0 mb-0 c-blue" href="index.html">ZORAN</a></h3></div>
-        <div class="icons d-flex align-content">
-            <span class="notification p-relative">
-                <i class="fa-regular fa-bell fa-lg"></i>
-              </span>
-              <img src="imgs/avatar.png" alt="">
+    <script
+  src="https://code.jquery.com/jquery-2.1.3.min.js"
+  integrity="sha256-ivk71nXhz9nsyFDoYoGf2sbjrR9ddh+XDkCcfZxjvcM="
+  crossorigin="anonymous"></script>
+<script src="//res.cloudinary.com/demo-robert/raw/upload/magnifier.js"></script>
+<script src="//res.cloudinary.com/demo-robert/raw/upload/colorPicker.js"></script>
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script>
+//generic image vars
+var URLPrefix = 'https://res.cloudinary.com/demo-robert/q_auto,f_auto/',
+textString = '%20',
+textVariable1 = '$text_!',
+textVariable2 = '!/o_0/',
+logoID = 'sample,o_0',
+textFont = 'arial',
+newHexColor = 'white',
+URLSuffix = 'shirt_only.jpg',
+textureOpacity = '0',
+logoResult = '';
+
+//model image vars
+var modelOverlayString1 = 'l_',
+modelOverlayString2 = ',w_300,ar_30:25,c_fit,y_-200,x_-5,e_overlay/',
+modelTextTransform1 = 'l_text:',
+modelTextTransform2 = '_100_bold:$(text),y_-40,co_rgb:333,o_70,w_300/',
+modelDisplace = 'l_shirt_displace,e_displace,x_10,y_10/',
+modelShirtUnderlay1 = 'u_shirt_only,e_replace_color:'
+modelShirtUnderlay2 = ':60:white/',
+modelTexture = 'l_heather_texture,o_',
+modelUnderlay = '/u_model2/';
+
+//hanging image vars
+var hangingOverlayString1 = 'l_',
+hangingOverlayString2 = ',w_220,ar_30:25,c_fit,y_-40,x_-5,e_overlay/',
+hangingTextTransform1 = 'l_text:',
+hangingTextTransform2 = '_100_bold:$(text),y_90,co_rgb:333,o_70,w_250/',
+hangingDisplace = 'l_hanging_displace,e_displace,x_10,y_10/',
+hangingShirtUnderlay1 = 'u_Hanging_T-Shirt_v83je9,e_replace_color:',
+hangingShirtUnderlay2 = ':60:white/',
+hangingTexture1 = 'l_hanging-shirt-texture,o_',
+hangingTexture2 = '/l_Hanger_qa2diz,fl_relative,w_1.0/';
+
+//laying image vars
+var layingOverlayString1 = 'l_',
+layingOverlayString2 = ',w_330,ar_30:25,c_fit,y_-30,x_-5,e_overlay/',
+layingTextTransform1 = 'l_text:',
+layingTextTransform2 = '_100_bold:$(text),y_150,co_rgb:333,o_70,w_350/',
+layingDisplace = 'l_laying_displace,e_displace,x_10,y_10/',
+layingShirtUnderlay1 = 'u_laying-shirt_xqstgr,e_replace_color:',
+layingShirtUnderlay2 = ':60:white/',
+layingTexture = 'l_laying-shirt-texture,o_';
+
+
+//end image vars
+
+//Invoke Color Swatch and set settings
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+$(document).ready(function(){
+  $(".basic").spectrum({
+      color: "#f00",
+      change: function(color) {
+          $("#basic-log").text("change called: " + color.toHexString());
+      }
+  });
+
+$("#full").spectrum({
+    color: "#ECC",
+    showInput: true,
+    className: "full-spectrum",
+    showInitial: true,
+    showPalette: true,
+    showSelectionPalette: true,
+    maxSelectionSize: 10,
+    preferredFormat: "rgb",
+    localStorageKey: "spectrum.demo",
+    move: function (color) {
+
+    },
+    show: function () {
+
+    },
+    beforeShow: function () {
+
+    },
+    hide: function () {
+
+    },
+    change: function(color) {
+        var firstSwatch = $('#colorList')[0].children[0].children[0].src;
+        newHexColor = color.toHexString().split('#')[1];
+        var hexColor = color.toHexString().split('#')[1],
+        newSrc = '//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:'+hexColor+':60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg';
+        $("#colorList").append('<li id="'+hexColor+'"><img src="'+newSrc+'" /></li>');
+        colorSwatchClick();
+    },
+    palette: [
+        ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
+        "rgb(204, 204, 204)", "rgb(217, 217, 217)","rgb(255, 255, 255)"],
+        ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+        "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"],
+        ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+        "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+        "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+        "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+        "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
+        "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+        "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+        "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+        "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
+        "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
+    ]
+})});
+</script>
+<!-- 000000000000000000000000000000000000000000000000000000000000 -->
+<div class="head bg-white p-15 between-flex">
+    <div id="header" class="logo_zoran">
+        <a href="index.html"><h1>ZORAN</h1></a>
+    </div>
+    <div class="icons d-flex align-content">
+        <span class="notification p-relative">
+            <i class="fa-regular fa-bell fa-lg"></i>
+          </span>
+          <img src="imgs/avatar.png" alt="">
+    </div>
+</div>
+<div class="page">
+    <div class="sidebar bg-white p-relative">
+        <ul>
+            <li>
+                <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#" onclick="t_schert()">
+                    <i class="fa-sharp fa-regular fa-shirt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#" onclick="t_text()">
+                    <i style="font-size:24px" class="fa"></i>
+                    <span>Text</span>
+                </a>
+            </li>
+            <li>
+                <a class="c-black d-flex align-content fs-15 rad-6 p-10" href="#" onclick="imag_upload()">
+                    <i class="fa-solid fa-images"></i>
+                    <span>Image</span>
+                </a>
+            </li>
+            <li>
+                <a id="imgDownload" class="c-black d-flex align-content fs-15 rad-6 p-10" href="#" onclick="t_doawnload()">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Download</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Start plan_and_workspace -->
+    <div class="plan_and_workspace">
+        <!-- Start App t-sehrit Panel -->
+        <div id="m1" class="app-t-sherit-panel">
+            <div class="f_a_b_img">
+                <div class="fron_and_back">
+                    <span class="txt-c d-block c-black fw-bold">Front And Back</span>
+                </div>
+                <div id="imageThumbs" class="imgs">
+                    <ul id="thumbs">
+                        <li class="active" id="hangingThumb"><img src="https://res.cloudinary.com/demo-robert/q_auto,f_auto/$text_!%20!/o_0/l_sample,o_0,w_220,ar_30:25,c_fit,y_-40,x_-5,e_overlay/l_text:arial_100_bold:$(text),y_90,co_rgb:333,o_70,w_250/l_hanging_displace,e_displace,x_10,y_10/u_Hanging_T-Shirt_v83je9,e_replace_color:white:60:white/l_hanging-shirt-texture,o_0/l_Hanger_qa2diz,fl_relative,w_1.0/w_75,ar_1:1,c_pad/shirt_only.jpg"></li>
+                        <li id="layingThumb" class=""><img src="https://res.cloudinary.com/demo-robert/q_auto,f_auto/$text_!%20!/o_0/l_sample,o_0,w_330,ar_30:25,c_fit,y_-30,x_-5,e_overlay/l_text:arial_100_bold:$(text),y_150,co_rgb:333,o_70,w_350/l_laying_displace,e_displace,x_10,y_10/u_laying-shirt_xqstgr,e_replace_color:white:60:white/l_laying-shirt-texture,o_0/w_75,ar_1:1,c_pad/shirt_only.jpg"></li>
+                        <li id="modelThumb" class=""><img src="https://res.cloudinary.com/demo-robert/q_auto,f_auto/$text_!%20!/o_0/l_sample,o_0,w_300,ar_30:25,c_fit,y_-200,x_-5,e_overlay/l_text:arial_100_bold:$(text),y_-40,co_rgb:333,o_70,w_300/l_shirt_displace,e_displace,x_10,y_10/u_shirt_only,e_replace_color:white:60:white/l_heather_texture,o_0/u_model2/w_75,ar_1:1,c_pad/shirt_only.jpg"></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Start Color -->
+            <div class="inputSelections">
+                <h2>Select a color:</h2>
+                <ul id="colorList" class="swatches">
+                    <li class="active" id="ffffff"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="47E8D2"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:47E8D2:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="DCA381"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:DCA381:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="702C3C"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:702C3C:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="E9C660"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:E9C660:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="A11D1F"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:A11D1F:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="897115"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:897115:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="598DE6"><img src="//res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:598DE6:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                </ul>
+                <p><a href="#" onclick="addColor()">Add a custom color</a></p>
+                <input type="text" id="full" style="display: none;"><div class="sp-replacer sp-light full-spectrum"><div class="sp-preview"><div class="sp-preview-inner" style="background-color: rgb(238, 204, 204);"></div></div><div class="sp-dd">▼</div></div>
+            </div>
+
+            <div class="inputSelections">
+                <h2>Select a texture:</h2>
+                <ul id="texture" class="swatches">
+                    <li id="flat" class="active"><img src="https://res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:ffffff:60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"></li>
+                    <li id="heatherTexture"><img src="https://res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:ffffff:60:white/l_heather_texture,o_30,w_30,h_30,c_crop/white-bar.jpg"></li>
+                </ul>
+            </div>
+            <!-- End Color -->
+            <!-- Start Klain Kamira -->
+            <div id="demoContainer">
+                <div id="imageDemoContainer">
+                <div id="preview">
+                </div>
+                    <div id="mainImageLoading" class="hide"></div>
+                </div>
+            </div>
+            <!-- End Klain Kamira -->
         </div>
-    </div>
-    <!-- End Head -->
-    <div class="page">
-        <div class="sidebar bg-white p-relative">
-            <ul>
-                <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#" onclick="t_schert()">
-                        <i class="fa-sharp fa-regular fa-shirt" ></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#" onclick="t_text()">
-                        <i style="font-size:24px" class="fa">&#xf035;</i>
-                        <span>Text</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="c-black d-flex align-content fs-15 rad-6 p-10" href="#" onclick="imag_upload()">
-                        <i class="fa-solid fa-images"></i>
-                        <span>Image</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
-                        <i class="fa-solid fa-diagram-project fa-fw"></i>
-                        <span>Projects</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
-                        <i class="fa-solid fa-graduation-cap fa-fw"></i>
-                        <span>Courses</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
-                        <i class="fa-regular fa-circle-user fa-fw"></i>
-                        <span>Friends</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="c-black d-flex align-content fs-14 rad-6 p-10" href="#">
-                        <i class="fa-regular fa-credit-card fa-fw"></i>
-                        <span>Plans</span>
-                    </a>
-                </li>
-            </ul>
+        <!-- Start Text -->
+        <div id="m2" class="app-t-sherit-panel" style="display: none;">
+            <div class="f_a_b_img">
+                <div class="inputSelections">
+                    <h2>Add text:</h2>
+                    <select id="fontList">
+                        <option value="Arial">Arial</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Sacramento">Sacramento</option>
+                        <option value="Roboto">Roboto</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Bitter">Bitter</option>
+                    </select>
+                    <div id="textInputContainer">
+                        <input type="text" id="shirtText">
+                        <input type="button" id="addText" value="Add Text">
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Start plan_and_workspace -->
-        <div class="plan_and_workspace">
-            <!-- Start App t-sehrit Panel -->
-            <div id="m1" class="app-t-sherit-panel">
-                <div class="model">
-                    <p>Model</p>
+        <!-- End Text -->
+        <!-- Start Imag Upload -->
+        <div id="m3" class="app-t-sherit-panel" style="display: none;">
+            <div class="f_a_b_img">
+                <div class="inputSelections">
+                    <h2>Add a logo:</h2>
+                    <ul id="logo-list" class="swatches">
+                        <!-- <li id="cloudinary-logo"><img src="//res.cloudinary.com/demo-robert/image/upload/q_auto,f_auto,h_30/cloudinary-logo.jpg"></li> -->
+                        <li id="fire"><img src="//res.cloudinary.com/demo-robert/image/upload/q_auto,f_auto,h_30/fire.png"></li>
+                    </ul>
+                    <p><a href="#" id="add_a_logo">Add a Custom Logo</a></p>
                 </div>
-                <div class="f_a_b_img">
-                    <div class="fron_and_back">
-                        <span class="txt-c d-block c-black fw-bold">Front And Back</span>
-                    </div>
-                    <div class="imgs">
-                        <img src="imgs/Tshirt-Maker_Models_Agus01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Patricia01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Pixelnacho01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Sofia01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Tshirt01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Valentina01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Agustina01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Coke02_Thumb.png" alt="" onclick="myFunction(this)"> 
-                        <img src="imgs/Tshirt-Maker_Models_Ali03_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Matias02_Thumb.png" alt="" onclick="myFunction(this)">
+            </div>
+        </div>
+        <!-- End Imag Upload -->
+        <!-- Start Download -->
+        <div id="m4" class="app-t-sherit-panel" style="display: none;">
+            <div class="f_a_b_img">
+                <div class="wrapper_dowanload">
+                    <header>
+                      <h1>Image Downloader</h1>
+                      <p>Paste URL of image, video, or pdf to download. This tool is made with Vanilla JavaScript.</p>
+                    </header>
+                    <form class="form_downlad" action="#">
+                      <input type="url" placeholder="Paste file URL" required="">
+                      <button>Download file</button>
+                    </form>
+                  </div>
+            </div>
+        </div>
+        <!-- End Download -->
+        <!-- End App t-sehrit Panel -->
+        
+        <!-- Start Workspace -->
+        <div class="workspace">
+            <div class="heder_workspace">
+                <div class="icons">
+                    <a href="index.html"><i class="fa-solid fa-house fs-20 c-black"></i></a>
+                    <a href="index.html"><i class="fa-solid fa-file-pdf fs-20 c-black"></i></a>
+                    <a href="designing.html"><i class="fa-solid fa-trash-can fs-20 c-black"></i></a>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <!-- <div class="lower-canva">
+                    <img id="imageBox" src="imgs/Tshirt-Maker_Models_Tshirt01_Thumb.png" alt="">
+                </div> -->
+                <div id="mainImage" class="lower-canva">
+                    <img 
+                    id="mainImageTag" 
+                    src="https://res.cloudinary.com/demo-robert/q_auto,f_auto/$text_!%20!/o_0/l_sample,o_0,w_300,ar_30:25,c_fit,y_-200,x_-5,e_overlay/l_text:arial_100_bold:$(text),y_-40,co_rgb:333,o_70,w_300/l_shirt_displace,e_displace,x_10,y_10/u_shirt_only,e_replace_color:white:60:white/l_heather_texture,o_0/u_model2/w_700,ar_1:1,c_pad/shirt_only.jpg" 
+                    data-large-img-url="https://res.cloudinary.com/demo-robert/q_auto,f_auto/$text_!%20!/o_0/l_sample,o_0,w_300,ar_30:25,c_fit,y_-200,x_-5,e_overlay/l_text:arial_100_bold:$(text),y_-40,co_rgb:333,o_70,w_300/l_shirt_displace,e_displace,x_10,y_10/u_shirt_only,e_replace_color:white:60:white/l_heather_texture,o_0/u_model2/ar_1:1,c_pad/shirt_only.jpg" class="">
+                    <div 
+                        id="mainImageTag-lens" 
+                        class="magnifier-lens hidden" 
+                        style="width: 175px; height: 175px; background: url(&quot;https://res.cloudinary.com/demo-robert/image/upload/w_700/e_red:0/e_blue:0/e_green:0/l_hanging-shirt-texture,o_0,fl_relative,w_1.0/l_Hanger_qa2diz,fl_relative,w_1.0/Hanging_T-Shirt_v83je9.jpg&quot;) -524px -132px no-repeat scroll; left: 523px; top: 131px;">
                     </div>
                 </div>
             </div>
-            <!-- Start Text -->
-            <div id="m2" class="app-t-sherit-panel" style="display: none;">
-                <div class="model">
-                    <p>Model</p>
-                </div>
-                <div class="f_a_b_img">
-                    <div class="fron_and_back">
-                        <span class="txt-c d-block c-black fw-bold">Front And Back</span>
-                    </div>
-                    <div class="imgs">
-                        <img src="imgs/Tshirt-Maker_Models_Agus01_Thumb.png" alt="" onclick="myFunction(this)">
-                        <img src="imgs/Tshirt-Maker_Models_Patricia01_Thumb.png" alt="" onclick="myFunction(this)">
-                    </div>
-                </div>
-            </div>
-            <!-- Start Text -->
-            <div id="m3" class="app-t-sherit-panel" style="display: none;">
-                <div class="model">
-                    <p>Model</p>
-                </div>
-                <div class="f_a_b_img">
-                    <div class="fron_and_back">
-                        <span class="txt-c d-block c-black fw-bold">Front And Back</span>
-                    </div>
-                    <div class="imgs">
-                        <img src="imgs/Tshirt-Maker_Models_Agus01_Thumb.png" alt="" onclick="myFunction(this)">
-                    </div>
-                </div>
-            </div>
-            <!-- Start Imag Upload -->
-            <!-- End Imag Upload -->
-            <!-- End App t-sehrit Panel -->
-            <!-- Start Workspace -->
-            <div class="workspace">
-                <div class="heder_workspace">
-                    <div class="icons">
-                        <i class="fa-solid fa-file"></i>
-                        <i class="fa-solid fa-file-pdf"></i>
-                        <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                </div>
-                <div class="canvas-container">
-                    <div class="lower-canva">
-                        <img id="imageBox" src="imgs/Tshirt-Maker_Models_Tshirt01_Thumb.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <!-- End Workspace -->
-        </div>     
-        <!-- End plan_and_workspace -->
-    </div>
-    </div>
-    <script src="script.js"></script>
+        </div>
+        <!-- End Workspace -->
+    </div>     
+    <!-- End plan_and_workspace -->
+</div>
+<!-- 000000000000000000000000000000000000000000000000000000000000 -->
+
+
+<script>
+//Invoke magnifier
+  $(document).ready(function(){
+    var evt = new Event(),
+    mag = new Magnifier(evt);
+    mag.attach({
+        thumb: '#mainImageTag',
+        largeWrapper: 'preview',
+        zoom: '4'
+    });
+    $("#mainImage").hover(
+      function() {
+        $('#preview').addClass('show');
+      }, function() {
+        $('#preview').removeClass('show');
+      }
+  	);
+  });
+
+
+//open upload Widget and set response variable
+  document.getElementById("add_a_logo").addEventListener("click", function() {
+    cloudinary.openUploadWidget({ cloud_name: 'demo-robert', upload_preset: 'pagespeed'},
+      function(error, result) {
+        if(!result)return;
+        window.logoResult=result[0];
+        addLogo();
+      });
+  }, false);
+
+  //loader gif while images are loading
+  function loader(a){
+  	$('#mainImageLoading').removeClass('hide');
+    var newImage = new Image();
+    newImage.src= a;
+    $(newImage).one("load", function() {
+      $('#mainImageLoading').addClass('hide');
+    }).each(function() {
+      if(this.complete) $(this).load();
+    });
+  }
+
+  //Update Image URLS
+  function updateImageURLs(){
+    var mainImageURL = function(){
+      if ($('#thumbs .active')[0].id == 'hangingThumb'){
+        return URLPrefix+textVariable1+textString+textVariable2+hangingOverlayString1+logoID+hangingOverlayString2+hangingTextTransform1+textFont+hangingTextTransform2+hangingDisplace+hangingShirtUnderlay1+newHexColor+hangingShirtUnderlay2+hangingTexture1+textureOpacity+hangingTexture2+'w_700,ar_1:1,c_pad/'+URLSuffix
+      }
+      else if ($('#thumbs .active')[0].id == 'layingThumb'){
+        return URLPrefix+textVariable1+textString+textVariable2+layingOverlayString1+logoID+layingOverlayString2+layingTextTransform1+textFont+layingTextTransform2+layingDisplace+layingShirtUnderlay1+newHexColor+layingShirtUnderlay2+layingTexture+textureOpacity+'/w_700,ar_1:1,c_pad/'+URLSuffix
+      }
+      else {
+        return URLPrefix+textVariable1+textString+textVariable2+modelOverlayString1+logoID+modelOverlayString2+modelTextTransform1+textFont+modelTextTransform2+modelDisplace+modelShirtUnderlay1+newHexColor+modelShirtUnderlay2+modelTexture+textureOpacity+modelUnderlay+'w_700,ar_1:1,c_pad/'+URLSuffix
+      }
+    }()
+    //run loader gif until image is loaded
+    loader(mainImageURL);
+    //set new main image URL
+    document.getElementById('mainImageTag').src = mainImageURL;
+    document.getElementById('mainImageTag').setAttribute('data-large-img-url', document.getElementById('mainImageTag').src.replace('w_700,',''));
+    document.getElementById('mainImageTag-large').src = document.getElementById('mainImageTag').src.replace('w_700,','');
+    //set new Thumbnail URLs
+    document.getElementById('hangingThumb').children[0].src = URLPrefix+textVariable1+textString+textVariable2+hangingOverlayString1+logoID+hangingOverlayString2+hangingTextTransform1+textFont+hangingTextTransform2+hangingDisplace+hangingShirtUnderlay1+newHexColor+hangingShirtUnderlay2+hangingTexture1+textureOpacity+hangingTexture2+'w_75,ar_1:1,c_pad/'+URLSuffix
+    document.getElementById('layingThumb').children[0].src = URLPrefix+textVariable1+textString+textVariable2+layingOverlayString1+logoID+layingOverlayString2+layingTextTransform1+textFont+layingTextTransform2+layingDisplace+layingShirtUnderlay1+newHexColor+layingShirtUnderlay2+layingTexture+textureOpacity+'/w_75,ar_1:1,c_pad/'+URLSuffix
+    document.getElementById('modelThumb').children[0].src = URLPrefix+textVariable1+textString+textVariable2+modelOverlayString1+logoID+modelOverlayString2+modelTextTransform1+textFont+modelTextTransform2+modelDisplace+modelShirtUnderlay1+newHexColor+modelShirtUnderlay2+modelTexture+textureOpacity+modelUnderlay+'w_75,ar_1:1,c_pad/'+URLSuffix
+  }
+
+
+  //Color-changing when somebody clicks on a color swatch
+  function colorSwatchClick(){
+      $("#colorList li").on("click", function() {
+          $('#colorList .active').removeClass('active');
+          $(this).addClass('active');
+          //set window color variable
+          newHexColor = $('#colorList .active')[0].id;
+          //update image URLS
+          updateImageURLs();
+          //Set flat color swatch color
+          document.getElementById('flat').children[0].src = "https://res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:"+newHexColor+":60:white/l_heather_texture,o_0,w_30,h_30,c_crop/white-bar.jpg"
+          //Set heather texture swatch color
+          document.getElementById('heatherTexture').children[0].src = "https://res.cloudinary.com/demo-robert/image/upload/w_30,h_30/e_replace_color:"+newHexColor+":60:white/l_heather_texture,o_30,w_30,h_30,c_crop/white-bar.jpg";
+      })
+  };
+
+  //Thumnail to main image
+    function thumbToMain(){
+      $("#thumbs li").on("click", function() {
+        $('#thumbs .active').removeClass('active');
+        $(this).addClass('active');
+        updateImageURLs();
+      })
+    };
+
+  //Texture add/remove
+    function textureSwap(){
+      $("#texture li").on("click", function() {
+          $('#texture .active').removeClass('active');
+          $(this).addClass('active');
+          //set texture opacity window variable
+          if ($('#texture .active')[0].id == 'flat'){
+            textureOpacity = '0';
+          }
+          else {
+            textureOpacity = '30';
+          }
+          //rebuild URLS
+          updateImageURLs();
+          var newTexture = 'texture,o_'+textureOpacity;
+          var numColors = document.getElementById('colorList').children.length;
+          for (var i=0; i<numColors;i++){
+              document.getElementById('colorList').children[i].children[0].src = document.getElementById('colorList').children[i].children[0].src.replace(/texture,o_([^,]+)/,newTexture);
+          }
+      })
+    };
+
+    //add logo to images
+    function addLogo(){
+        logoID = logoResult.public_id;
+        var newLogoSrc = "//res.cloudinary.com/demo-robert/q_auto,f_auto,h_30/"+logoID;
+        $("#logo-list").prepend('<li id="'+logoID+'"><img src="'+newLogoSrc+'"/></li>');
+        updateImageURLs();
+    }
+    function applyLogo(){
+      $("#logo-list li").on("click", function() {
+        $('#logo-list .active').removeClass('active');
+        $(this).addClass('active');
+        logoID = $('#logo-list .active')[0].id;
+        updateImageURLs();
+        applyLogo();
+      })
+    }
+
+    //add text to images
+    function addText(){
+      $("#addText").on("click", function() {
+        textString = $('#shirtText').val();
+        textFont = $('#fontList').val();
+        updateImageURLs();
+      })
+    }
+
+//initialize click watchers
+  $(document).ready(function(){
+      colorSwatchClick();
+      thumbToMain();
+      textureSwap();
+      addText();
+      applyLogo();
+  });
+</script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -292,6 +292,25 @@ ul{
 .landing .go-down i {
   animation: go-down 1.5s linear infinite;
 }
+.button_designing {
+  background-color: var(--main-color);
+  color: white;
+  padding: 20px 25px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 22px;
+  transition: var(--main-transition);
+  display: block;
+  width: fit-content;
+}
+.button_designing:hover {
+  background-color: #357ebaf6;
+}
+@media (max-width: 991px) {
+  .button_designing {
+    margin: auto;
+  }
+}
 /* End Landing */
 /* Start Articles */
 .articles {
@@ -860,218 +879,6 @@ ul{
   }
 }
 /* End Animation */
-/* Start alles */
-.alles {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-/* End alles */
-/* Start page */
-.page {
-  background-color: #f1f5f9;
-  min-height: 100vh;
-  display: flex;
-  flex-grow: 1;
-  height: 0;
-  position: relative;
-  width: 100%;
-}
-/* End Page */
-/* Start Head */
-.head .icons .notification {
-  transform: translateY(7px);
-}
-.head .icons .notification::before {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  border-radius: 50%;
-  right: -5px;
-  top: -8px;
-}
-.head .icons img{
-  width: 32px;
-  margin-left: 10px; 
-}
-/* End Head */
-/* Start Sidebar */
-.sidebar {
-  width: 58px;
-  padding: 10px;
-}
-.sidebar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: var(--grey-color);
-}
-.sidebar > h3 {
-  font-size: 13px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.sidebar > h3::before,
-.sidebar > h3::after {
-  display: none;
-}
-.sidebar > h3::before {
-  content: "";
-  width: 80px;
-  height: 2px;
-  bottom: -20px;
-}
-.sidebar > h3::after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  bottom: -29px;
-  border: 4px solid white;
-}
-.sidebar > ul > li > a {
-  transition: var(--main-transition);
-  margin-bottom: 8px;
-  position: relative;
-}
-.sidebar > ul > li > a:hover {
-  background-color: #f6f6f6;
-  color: var(--blue-color);
-}
-.sidebar > ul > li > a:hover:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -10px;
-  width: 3px;
-  height: 100%;
-  z-index: 3;
-  background-color: var(--blue-color);
-}
-.sidebar > ul > li > a > i {
-  font-weight: 700;
-}
-.sidebar > ul > li > a > span {
-  display: none;
-}
-/* End Sidebar */
-/* Start plan_and_workspace */
-.plan_and_workspace {
-  display: flex;
-  flex-grow: 1;
-  overflow: hidden;
-}
-/* Start App t-sehrit Panel */
-.app-t-sherit-panel {
-  background-color: white;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 350px;
-}
-.app-t-sherit-panel .model {
-  text-align: center;
-  color: var(--grey-color);
-  border-bottom: 1px solid #eee;
-  background-color: #f6f6f6;
-}
-.app-t-sherit-panel .model p {
-  position: relative;
-  margin: 5px auto 5px;
-  width: fit-content;
-}
-.app-t-sherit-panel .model p:hover:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--blue-color);
-  color: var(--blue-color);
-}
-.app-t-sherit-panel .f_a_b_img {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.app-t-sherit-panel .imgs {
-  display: grid;
-  gap: 5px;
-  grid-template-columns: 145px 145px;
-  grid-auto-rows: 94px;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-.app-t-sherit-panel .imgs img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 3px solid transparent;
-  opacity: 0.7;
-  transition: var(--main-transition);
-}
-.app-t-sherit-panel .imgs img:hover {
-  border-color: var(--blue-color);
-  opacity: 1;
-}
-/* End App t-sehrit Panel */ 
-/* Start Workspace */
-.workspace {
-  flex-grow: 1;
-}
-.workspace .heder_workspace {
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 10px;
-  padding: 10px 0;
-  background-color: #f6f6f6;
-}
-.workspace .heder_workspace .icons {
-  display: flex;
-  gap: 35px;
-  font-size: 22px;
-}
-.workspace .heder_workspace .icons i {
-  transition: var(--main-transition);
-} 
-.workspace .heder_workspace .icons i:hover {
-  color: var(--blue-color);
-}
-.workspace .canvas-container {
-  /* width: 946px;
-  height: 882px; */
-  position: relative;
-  user-select: none;
-}
-.workspace .canvas-container .lower-canva {
-  position: absolute;
-  width: 100%;
-  height: 882px;
-  left: 0px;
-  top: 0px;
-  touch-action: none;
-  user-select: none;
-}
-.workspace .canvas-container img {
-  width: 100%; 
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  cursor: default;
-  object-fit: cover;
-}
-/* End Workspace */
+
+/* 0000000000000000000000000000000000000000000000 */
+
